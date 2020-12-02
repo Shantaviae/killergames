@@ -1,0 +1,80 @@
+name: killergames
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0-0 <3.0.0"
+# environment:
+#   sdk: ">=2.7.0 <3.0.0"
+dependencies:
+  flutter:
+    sdk: flutter
+  auto_size_text: ^2.1.0
+  flutter_bloc: ^6.1.1
+  flutter_feather_icons: ^1.0.3
+  font_awesome_flutter: ^8.10.0
+  get_it: ^6.0.0-nullsafety.1
+  url_launcher: ^6.0.0-nullsafety.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic: ^1.9.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: "Inter"
+      fonts:
+        - asset: assets/fonts/Inter-Thin-slnt=0.ttf
+          weight: 100
+        - asset: assets/fonts/Inter-ExtraLight-slnt=0.ttf
+          weight: 200
+        - asset: assets/fonts/Inter-Light-slnt=0.ttf
+          weight: 300
+        - asset: assets/fonts/Inter-Regular-slnt=0.ttf
+          weight: 400
+        - asset: assets/fonts/Inter-Medium-slnt=0.ttf
+          weight: 500
+        - asset: assets/fonts/Inter-SemiBold-slnt=0.ttf
+          weight: 600
+        - asset: assets/fonts/Inter-Bold-slnt=0.ttf
+          weight: 700
+        - asset: assets/fonts/Inter-ExtraBold-slnt=0.ttf
+          weight: 800
+        - asset: assets/fonts/Inter-Black-slnt=0.ttf
+          weight: 900
+    - family: "OpenSans"
+      fonts:
+        - asset: assets/fonts/OpenSans-Light.ttf
+          weight: 300
+        - asset: assets/fonts/OpenSans-LightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/OpenSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/OpenSans-Italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/OpenSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/OpenSans-SemiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/OpenSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/OpenSans-BoldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/OpenSans-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/OpenSans-ExtraBoldItalic.ttf
+          weight: 800
+          style: italic
