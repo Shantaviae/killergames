@@ -50,10 +50,7 @@ class Responsive {
   ]) {
     final size = MediaQuery.of(context).size;
     final width = contentWidth ?? screenWidth(context);
-    return EdgeInsets.symmetric(
-      horizontal: (size.width - width) / 2,
-      vertical: PADDING * 2,
-    );
+    return EdgeInsets.symmetric(horizontal: (size.width - width) / 2);
   }
 }
 

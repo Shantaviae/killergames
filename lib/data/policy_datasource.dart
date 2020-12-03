@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:killergames/data/graph_ql_datasource.dart';
-import 'package:killergames/data/placeholder_data.dart';
 import 'package:killergames/domain/entities/entities.dart';
 
 const String _policiesQuery = r'''
@@ -20,7 +19,7 @@ class PolicyDatasource extends GraphQLDatasource {
   Future<Map<String, AppPolicy>> fetchPolicies() async {
     final data = await fetchData<AppPolicy>(
       converter: (data) => toPolicyEntity(data),
-      testData: PlaceholderData.policies,
+      // testData: PlaceholderData.policies,
     );
     return {for (final policy in data) policy.path: policy};
   }

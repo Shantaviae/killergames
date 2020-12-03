@@ -13,8 +13,7 @@ class CustomAppFooter extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Container(
         color: Theme.of(context).primaryColor,
-        padding: Responsive.contentPadding(context) +
-            EdgeInsets.symmetric(horizontal: PADDING),
+        padding: Responsive.contentPadding(context) + EdgeInsets.all(PADDING),
         child: Row(
           children: [
             AppName(),
@@ -22,12 +21,15 @@ class CustomAppFooter extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: PADDING),
                 child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: PADDING,
+                  runSpacing: PADDING / 1.5,
                   children: [
                     for (final policy in policies.entries)
                       TextButton(
                         child: Text(
                           policy.value.title,
-                          style: Theme.of(context).primaryTextTheme.bodyText1,
+                          style: Theme.of(context).primaryTextTheme.bodyText2,
                         ),
                         onPressed: () =>
                             RouteDelegate.openPolicy(context, policy.key),
@@ -36,10 +38,11 @@ class CustomAppFooter extends StatelessWidget {
                 ),
               ),
             ),
-            SelectableText(
-              AppLocals.copyright,
-              style: Theme.of(context).primaryTextTheme.bodyText1,
-            ),
+            if (Responsive(context).isDesktop)
+              SelectableText(
+                AppLocals.copyright,
+                style: Theme.of(context).primaryTextTheme.bodyText2,
+              ),
           ],
         ),
       ),

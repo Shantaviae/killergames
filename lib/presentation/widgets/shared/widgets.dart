@@ -4,3 +4,4 @@ export 'custom_app_drawer.dart';
 export 'custom_app_footer.dart';
 export 'responsive_builder.dart';
 export 'killergames_logo.dart';
+export 'display_html.dart';

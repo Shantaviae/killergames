@@ -46,8 +46,7 @@ class PlaceholderData {
         {
           'userFullname': 'Dan J.',
           'review': {
-            'html':
-                '<p>I would gladly pay for an ad-free version. Just sayin&#39;.</p>'
+            'html': 'I would gladly pay for an ad-free version. Just sayin.'
           },
           'rating': 5
         },
@@ -55,7 +54,7 @@ class PlaceholderData {
           'userFullname': 'Samantha E.',
           'review': {
             'html':
-                '<p>Very smooth and challenging. Really enjoy this!! Also, it helps me calm down by taking my mind off for a bit when I feel anxious. I appreciate that a lot.</p>'
+                'Very smooth and challenging. Really enjoy this!! Also, it helps me calm down by taking my mind off for a bit when I feel anxious. I appreciate that a lot.'
           },
           'rating': 5
         },
@@ -63,7 +62,7 @@ class PlaceholderData {
           'userFullname': 'Peter R.',
           'review': {
             'html':
-                '<p>Smooth, effortless play. I used to cure when my fat fingers made a strong move, but the 1-level Undo solved that. A pleasure to play.</p>'
+                'Smooth, effortless play. I used to cure when my fat fingers made a strong move, but the 1-level Undo solved that. A pleasure to play.'
           },
           'rating': 5
         },
@@ -71,7 +70,7 @@ class PlaceholderData {
           'userFullname': 'Ellis F.',
           'review': {
             'html':
-                '<p>A very good game which is very very user friendly, clever with high playability that you want to play again and again, at least until you reach 2048 aim.</p>'
+                'A very good game which is very very user friendly, clever with high playability that you want to play again and again, at least until you reach 2048 aim.'
           },
           'rating': 5
         }

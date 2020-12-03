@@ -7,6 +7,7 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:killergames/core/core.dart';
 import 'package:killergames/domain/entities/entities.dart';
+import 'package:killergames/presentation/widgets/shared/widgets.dart';
 
 class FaqTile extends StatefulWidget {
   const FaqTile(this.faq, {Key? key}) : super(key: key);
@@ -98,11 +99,9 @@ class _FaqTileState extends State<FaqTile> with SingleTickerProviderStateMixin {
               child: isOpen
                   ? Padding(
                       padding: const EdgeInsets.all(PADDING),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(widget.faq.answer, style: textStyle),
-                        ],
+                      child: DisplayHtml(
+                        htmlContent: widget.faq.answer,
+                        textStyle: textStyle,
                       ),
                     )
                   : const SizedBox.shrink(),

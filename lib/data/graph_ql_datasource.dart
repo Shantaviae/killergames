@@ -15,7 +15,7 @@ class GraphQLDatasource {
     required Converter<T> converter,
     List<Map<String, dynamic>>? testData,
   }) async {
-    List<Map<String, dynamic>> data;
+    List<dynamic> data;
     if (testData == null) {
       final httpLink = HttpLink(uri: GRAPH_CMS_ENDPOINT);
       final client = GraphQLClient(cache: InMemoryCache(), link: httpLink);

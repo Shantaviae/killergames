@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
+import 'package:killergames/core/core.dart';
 import 'package:killergames/domain/entities/entities.dart';
 import 'package:killergames/presentation/widgets/home/widgets.dart';
 import 'package:killergames/presentation/widgets/shared/widgets.dart';
@@ -21,13 +22,14 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final responsive = Responsive(context);
     final isDesktop = responsive.isDesktop;
+    final contentPadding = Responsive.contentPadding(context);
     return SliverAppBar(
       toolbarHeight: TOOLBAR_HEIGHT,
       leading: SizedBox.shrink(),
-      leadingWidth: 0,
+      leadingWidth: contentPadding.left,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       title: AppName(onPrimary: false),
-      centerTitle: true,
+      centerTitle: false,
       actions: [
         if (isDesktop)
           for (final entry in apps.entries)
@@ -41,7 +43,7 @@ class CustomAppBar extends StatelessWidget {
             icon: Icon(FeatherIcons.menu),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
-        SizedBox(width: Responsive.contentPadding(context).right),
+        SizedBox(width: contentPadding.right + PADDING),
       ],
     );
   }

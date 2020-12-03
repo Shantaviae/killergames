@@ -54,7 +54,7 @@ class ThemeManager {
     return textTheme.headline5?.copyWith(
       fontFamily: HEADER_FONT_FAMILY,
       fontWeight: FontWeight.w800,
-      fontSize: isDesktop ? 28 : 20,
+      fontSize: isDesktop ? 20 : 16,
       height: 1.1,
     );
   }

@@ -46,12 +46,7 @@ class AppContentStackedHero extends StatelessWidget {
                             isDesktop ? TextAlign.left : TextAlign.center,
                       ),
                       SizedBox(height: isDesktop ? PADDING * 2 : PADDING),
-                      Text(
-                        appContent.description,
-                        style: ThemeManager.heroSubheader(context),
-                        textAlign:
-                            isDesktop ? TextAlign.left : TextAlign.center,
-                      ),
+                      DisplayHtml(htmlContent: appContent.description),
                       if (!isDesktop) const SizedBox(height: PADDING * 2),
                       if (!isDesktop) _LayeredScreenshots(appContent),
                     ],

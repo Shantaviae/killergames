@@ -2,7 +2,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:killergames/core/core.dart';
 import 'package:killergames/data/graph_ql_datasource.dart';
-import 'package:killergames/data/placeholder_data.dart';
 import 'package:killergames/domain/entities/entities.dart';
 
 class AppDatasource extends GraphQLDatasource {
@@ -11,7 +10,7 @@ class AppDatasource extends GraphQLDatasource {
   Future<Map<String, KillerGamesApp>> fetchApps() async {
     final data = await fetchData<KillerGamesApp>(
       converter: (data) => toAppEntity(data),
-      testData: PlaceholderData.apps,
+      // testData: PlaceholderData.apps,
     );
     return {for (final app in data) app.id: app};
   }
@@ -53,7 +52,7 @@ class AppDatasource extends GraphQLDatasource {
     for (final review in data['reviews']) {
       reviews.add(AppReview(
         userFullname: review['userFullname'],
-        appReviewDescription: review['review']['html'],
+        appReviewDescription: review['review'],
         rating: review['rating'],
       ));
     }
@@ -111,9 +110,7 @@ query AllKillerGames {
     }
     reviews {
       userFullname
-      review {
-        html
-      }
+      review
       rating
     }
     faqs {
