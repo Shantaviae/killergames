@@ -5,14 +5,12 @@ import 'package:killergames/domain/entities/entities.dart';
 class SelectAppButton extends StatelessWidget {
   const SelectAppButton({
     required this.appId,
-    required this.setAppId,
     required this.app,
     required this.isSelected,
     Key? key,
   }) : super(key: key);
 
   final String appId;
-  final Function(String) setAppId;
   final KillerGamesApp app;
   final bool isSelected;
 
@@ -21,7 +19,7 @@ class SelectAppButton extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
     final color = textTheme.headline6?.color ?? Colors.black;
     return TextButton(
-      onPressed: () => setAppId(appId),
+      onPressed: () => RouteDelegate.openApp(context, appId),
       child: AnimatedContainer(
         duration: ANIMATION,
         curve: CURVE,

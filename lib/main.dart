@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:killergames/core/core.dart';
-import 'package:killergames/presentation/navigation/navigation.dart';
+import 'package:killergames/core/route_delegate.dart';
 import 'package:killergames/presentation/view_models/view_models.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:provider/provider.dart';
@@ -35,18 +35,15 @@ class _MyAppState extends State<MyApp> {
     context.read<PolicyViewModel>().initialize();
   }
 
-  final _routerDelegate = AppRouterDelegate();
-  final _routeInformationParser = AppRouteInformationParser();
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeManager.themeData(isLight: true),
       darkTheme: ThemeManager.themeData(isLight: false),
       themeMode: ThemeMode.light,
-      routerDelegate: _routerDelegate,
-      routeInformationParser: _routeInformationParser,
+      initialRoute: RouteDelegate.home,
+      onGenerateRoute: RouteDelegate.generateRoute,
     );
   }
 }

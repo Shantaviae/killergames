@@ -10,21 +10,17 @@ class ErrorView extends StatelessWidget {
     required this.errorMessage,
     required this.showDrawer,
     this.appId,
-    this.setAppId,
     this.apps,
-    required this.setPolicyPath,
     required this.policies,
     required this.onReset,
     required this.resetButtonLabel,
     Key? key,
-  })  : assert(!showDrawer || (showDrawer && setAppId != null && apps != null)),
+  })  : assert(!showDrawer || (showDrawer && apps != null)),
         super(key: key);
 
   final String errorMessage;
   final bool showDrawer;
   final String? appId;
-  final Function(String)? setAppId;
-  final Function(String) setPolicyPath;
   final Map<String, KillerGamesApp>? apps;
   final Map<String, AppPolicy> policies;
   final VoidCallback onReset;
@@ -39,7 +35,7 @@ class ErrorView extends StatelessWidget {
       onWillPop: () async => true,
       child: SafeArea(
         child: Scaffold(
-          drawer: showDrawer ? CustomAppDrawer(appId, setAppId!, apps!) : null,
+          drawer: showDrawer ? CustomAppDrawer(appId, apps!) : null,
           body: Center(
             child: Container(
               width: responsive.isDesktop ? 600 : size.width - PADDING * 2,

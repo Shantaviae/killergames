@@ -3,3 +3,4 @@ export 'consts.dart';
 export 'enums.dart';
 export 'locator.dart';
 export 'theme_manager.dart';
+export 'route_delegate.dart';

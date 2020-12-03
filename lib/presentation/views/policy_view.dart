@@ -7,14 +7,9 @@ import 'package:killergames/presentation/views/error_view.dart';
 import 'package:killergames/presentation/widgets/shared/widgets.dart';
 
 class PolicyView extends StatelessWidget {
-  const PolicyView({
-    required this.policyPath,
-    required this.setPolicyPath,
-    Key? key,
-  }) : super(key: key);
+  const PolicyView(this.policyPath, {Key? key}) : super(key: key);
 
   final String policyPath;
-  final Function(String?) setPolicyPath;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +30,9 @@ class PolicyView extends StatelessWidget {
       return ErrorView(
         errorMessage: AppLocals.error404,
         showDrawer: false,
-        setPolicyPath: setPolicyPath,
         policies: state.policies,
         resetButtonLabel: AppLocals.returnHome,
-        onReset: () => setPolicyPath(null),
+        onReset: () => RouteDelegate.openApp(context, null),
       );
     } else {
       final contentPadding = Responsive.contentPadding(context);
@@ -64,7 +58,7 @@ class PolicyView extends StatelessWidget {
                   child: Text('${policy.content}'),
                 ),
               ),
-              CustomAppFooter(state.policies, setPolicyPath),
+              CustomAppFooter(state.policies),
             ],
           ),
         ),

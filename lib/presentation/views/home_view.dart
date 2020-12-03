@@ -8,16 +8,9 @@ import 'package:killergames/presentation/widgets/home/widgets.dart';
 import 'package:killergames/presentation/widgets/shared/widgets.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({
-    required this.appId,
-    required this.setAppId,
-    required this.setPolicyPath,
-    Key? key,
-  }) : super(key: key);
+  const HomeView(this.appId, {Key? key}) : super(key: key);
 
   final String? appId;
-  final Function(String) setAppId;
-  final Function(String) setPolicyPath;
 
   @override
   Widget build(BuildContext context) {
@@ -39,26 +32,24 @@ class HomeView extends StatelessWidget {
         errorMessage: AppLocals.error404,
         showDrawer: true,
         appId: appId,
-        setAppId: setAppId,
-        setPolicyPath: setPolicyPath,
         apps: homeState.apps,
         policies: policyState.policies,
         resetButtonLabel: AppLocals.returnHome,
-        onReset: () => setAppId(homeState.apps.keys.first),
+        onReset: () => context.homeVM.initialize(),
       );
     } else {
       return SafeArea(
         child: Scaffold(
-          drawer: CustomAppDrawer(appId, setAppId, homeState.apps),
+          drawer: CustomAppDrawer(appId, homeState.apps),
           body: CustomScrollView(
             slivers: [
-              CustomAppBar(appId, setAppId, homeState.apps),
+              CustomAppBar(appId, homeState.apps),
               AppInfoHero(selectedApp),
               for (final appContent in selectedApp.content)
                 AppContentHero(appContent),
               ReviewsSection(reviews: selectedApp.reviews),
               FaqSection(faqs: selectedApp.faqs),
-              CustomAppFooter(policyState.policies, setPolicyPath),
+              CustomAppFooter(policyState.policies),
             ],
           ),
         ),

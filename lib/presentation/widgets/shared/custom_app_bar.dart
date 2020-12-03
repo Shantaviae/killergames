@@ -10,13 +10,11 @@ const TOOLBAR_HEIGHT = kToolbarHeight * 1.25;
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar(
     this.appId,
-    this.setAppId,
     this.apps, {
     Key? key,
   }) : super(key: key);
 
   final String? appId;
-  final Function(String) setAppId;
   final Map<String, KillerGamesApp> apps;
 
   @override
@@ -27,8 +25,7 @@ class CustomAppBar extends StatelessWidget {
       toolbarHeight: TOOLBAR_HEIGHT,
       leading: SizedBox.shrink(),
       leadingWidth: 0,
-      backgroundColor: Colors.green,
-      // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       title: AppName(onPrimary: false),
       centerTitle: true,
       actions: [
@@ -36,7 +33,6 @@ class CustomAppBar extends StatelessWidget {
           for (final entry in apps.entries)
             SelectAppButton(
               appId: entry.key,
-              setAppId: setAppId,
               app: entry.value,
               isSelected: entry.key == appId,
             ),

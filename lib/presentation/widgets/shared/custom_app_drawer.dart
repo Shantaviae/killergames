@@ -6,13 +6,11 @@ import 'package:killergames/presentation/widgets/shared/widgets.dart';
 class CustomAppDrawer extends StatelessWidget {
   const CustomAppDrawer(
     this.appId,
-    this.setAppId,
     this.apps, {
     Key? key,
   }) : super(key: key);
 
   final String? appId;
-  final Function(String) setAppId;
   final Map<String, KillerGamesApp> apps;
 
   @override
@@ -44,8 +42,8 @@ class CustomAppDrawer extends StatelessWidget {
                 color: appId == entry.key ? color : Colors.transparent,
               ),
               onTap: () {
-                setAppId(entry.key);
                 Navigator.pop(context);
+                RouteDelegate.openApp(context, entry.key);
               },
             ),
         ],
