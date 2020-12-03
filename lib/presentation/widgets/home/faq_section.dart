@@ -16,10 +16,10 @@ class FaqSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
-        padding: const EdgeInsets.all(PADDING * 4),
         alignment: Alignment.center,
-        child: SizedBox(
+        child: Container(
           width: Responsive.screenWidth(context, 1000),
+          padding: const EdgeInsets.all(PADDING * 4),
           child: Column(
             children: [
               Padding(

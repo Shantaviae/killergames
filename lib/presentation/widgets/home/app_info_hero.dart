@@ -4,50 +4,48 @@ import 'package:killergames/core/core.dart';
 import 'package:killergames/presentation/widgets/shared/widgets.dart';
 
 class AppInfoHero extends StatelessWidget {
-  const AppInfoHero(this.appIntroHero, {Key? key}) : super(key: key);
+  const AppInfoHero(this.app, {Key? key}) : super(key: key);
 
-  final AppInfo appIntroHero;
+  final KillerGamesApp app;
 
   @override
   Widget build(BuildContext context) {
-    final isDesktop = Responsive(context).isDesktop;
     return SliverToBoxAdapter(
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-          vertical: isDesktop ? PADDING * 2.5 : PADDING * 1.5,
-        ),
-        child: Stack(
-          alignment: Alignment.centerLeft,
-          children: [
-            Container(
-              alignment: Alignment.centerRight,
-              child: Image.asset(
-                appIntroHero.largeAbstractAppImage,
-                fit: BoxFit.cover,
+      child: Container(
+        alignment: Alignment.center,
+        child: Container(
+          width: Responsive.screenWidth(context),
+          child: Stack(
+            alignment: Alignment.centerLeft,
+            children: [
+              Container(
+                alignment: Alignment.centerRight,
+                child: Image.network(app.headerImage, fit: BoxFit.cover),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: PADDING * 1.5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _HeroTitleDecoration(
-                    child: Text(
-                      appIntroHero.appName,
-                      style: ThemeManager.heroHeader(context, onPrimary: true),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: PADDING * 1.5),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _HeroTitleDecoration(
+                      child: Text(
+                        app.name,
+                        style:
+                            ThemeManager.heroHeader(context, onPrimary: true),
+                      ),
                     ),
-                  ),
-                  _HeroTitleDecoration(
-                    child: Text(
-                      appIntroHero.appSlogan,
-                      style:
-                          ThemeManager.heroSubheader(context, onPrimary: true),
+                    _HeroTitleDecoration(
+                      child: Text(
+                        app.slogan,
+                        style: ThemeManager.heroSubheader(context,
+                            onPrimary: true),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

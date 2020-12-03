@@ -1,37 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:killergames/core/core.dart';
-import 'package:killergames/presentation/view_models/view_models.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:killergames/core/core.dart';
+import 'package:killergames/presentation/view_models/view_models.dart';
+import 'package:killergames/presentation/views/error_view.dart';
+import 'package:killergames/presentation/widgets/shared/widgets.dart';
 
-class PolicyView extends StatefulWidget {
-  const PolicyView(this.policyType, {Key? key}) : super(key: key);
+class PolicyView extends StatelessWidget {
+  const PolicyView({
+    required this.policyPath,
+    required this.setPolicyPath,
+    Key? key,
+  }) : super(key: key);
 
-  final PolicyType policyType;
-
-  @override
-  _PolicyViewState createState() => _PolicyViewState();
-}
-
-class _PolicyViewState extends State<PolicyView> {
-  @override
-  void didUpdateWidget(covariant PolicyView oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    context.policyVM.setPolicyType(widget.policyType);
-  }
+  final String policyPath;
+  final Function(String?) setPolicyPath;
 
   @override
   Widget build(BuildContext context) {
     final state = context.select((PolicyViewModel vm) => vm.state);
-    final policy = state.selectedPolicy;
+
+    if (state.stateType.isInitial) {
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator.adaptive(),
+        ),
+      );
+    }
+
+    final policy = state.policies[policyPath];
     if (policy == null) {
-      return Container();
+      //If user provides a policy path that doesn't match with the paths of the
+      //loaded policies, show error message and option to return home.
+      return ErrorView(
+        errorMessage: AppLocals.error404,
+        showDrawer: false,
+        setPolicyPath: setPolicyPath,
+        policies: state.policies,
+        resetButtonLabel: AppLocals.returnHome,
+        onReset: () => setPolicyPath(null),
+      );
     } else {
+      final contentPadding = Responsive.contentPadding(context);
       return SafeArea(
         child: Scaffold(
-          body: Column(
-            children: [
-              Text('${policy.policyName}'),
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: contentPadding,
+                  child: Text('${policy.title}'),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: contentPadding,
+                  child: Text('${policy.description}'),
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: contentPadding,
+                  child: Text('${policy.content}'),
+                ),
+              ),
+              CustomAppFooter(state.policies, setPolicyPath),
             ],
           ),
         ),

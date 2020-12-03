@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:killergames/core/core.dart';
 import 'package:killergames/domain/entities/entities.dart';
+import 'package:killergames/presentation/widgets/shared/widgets.dart';
 
 class CustomAppDrawer extends StatelessWidget {
-  const CustomAppDrawer({
-    required this.selectedAppId,
-    required this.appData,
+  const CustomAppDrawer(
+    this.appId,
+    this.setAppId,
+    this.apps, {
     Key? key,
   }) : super(key: key);
 
-  final AppId selectedAppId;
-  final Map<AppId, KillerGamesApp> appData;
+  final String? appId;
+  final Function(String) setAppId;
+  final Map<String, KillerGamesApp> apps;
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -21,33 +25,27 @@ class CustomAppDrawer extends StatelessWidget {
         children: <Widget>[
           DrawerHeader(
             child: Center(
-              child: Text(
-                'Killer Games Apps'.toUpperCase(),
-                style: ThemeManager.appTitle(context, onPrimary: true),
-              ),
+              child: AppName(),
             ),
             decoration: BoxDecoration(
               color: Theme.of(context).primaryColor,
             ),
           ),
-          for (final entry in appData.entries)
+          for (final entry in apps.entries)
             ListTile(
               contentPadding: const EdgeInsets.only(
                 left: PADDING / 2,
                 right: PADDING,
               ),
-              title: Text(
-                entry.value.appIntroHero.appName,
-                style: textTheme.subtitle1,
-              ),
+              title: Text(entry.value.name, style: textTheme.subtitle1),
               minLeadingWidth: 4,
               leading: Container(
                 width: 4,
-                color: selectedAppId == entry.key ? color : Colors.transparent,
+                color: appId == entry.key ? color : Colors.transparent,
               ),
               onTap: () {
+                setAppId(entry.key);
                 Navigator.pop(context);
-                Navigator.pushNamed(context, entry.key.pathName);
               },
             ),
         ],

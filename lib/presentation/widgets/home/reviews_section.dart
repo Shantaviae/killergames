@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:killergames/core/core.dart';
 import 'package:killergames/domain/entities/entities.dart';
+import 'package:killergames/presentation/widgets/shared/widgets.dart';
 
 class ReviewsSection extends StatelessWidget {
   const ReviewsSection({
@@ -23,93 +24,97 @@ class ReviewsSection extends StatelessWidget {
     return SliverToBoxAdapter(
       child: Container(
         color: Theme.of(context).buttonColor.withOpacity(0.5),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: PADDING * 1.5,
+        child: Container(
+          width: Responsive.screenWidth(context),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: PADDING * 1.5,
+                ),
+                child: Text(
+                  'Customer Reviews',
+                  style: ThemeManager.heroHeader(context),
+                ),
               ),
-              child: Text(
-                'Customer Reviews',
-                style: ThemeManager.heroHeader(context),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: PADDING * 0.5,
+                ),
+                child: Text(
+                  'Check out what other players are saying about the game.',
+                  style: ThemeManager.heroSubheader(context),
+                ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: PADDING * 0.5,
-              ),
-              child: Text(
-                'Check out what other players are saying about the game.',
-                style: ThemeManager.heroSubheader(context),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(PADDING * 2),
-              child: Wrap(
-                spacing: PADDING,
-                runSpacing: PADDING / 1.5,
-                children: [
-                  for (final review in reviews)
-                    Card(
-                      margin: EdgeInsets.zero,
-                      shape: RoundedRectangleBorder(borderRadius: RADIUS * 4),
-                      shadowColor: Colors.black12,
-                      elevation: 6,
-                      child: Container(
-                        height: 250,
-                        width: 180,
-                        margin: const EdgeInsets.symmetric(horizontal: PADDING),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: PADDING),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(PADDING / 2),
-                                  child: Icon(
-                                    FontAwesomeIcons.quoteLeft,
-                                    color: Theme.of(context).accentColor,
-                                    size: 18,
+              Padding(
+                padding: const EdgeInsets.all(PADDING * 2),
+                child: Wrap(
+                  spacing: PADDING,
+                  runSpacing: PADDING / 1.5,
+                  children: [
+                    for (final review in reviews)
+                      Card(
+                        margin: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(borderRadius: RADIUS * 4),
+                        shadowColor: Colors.black12,
+                        elevation: 6,
+                        child: Container(
+                          height: 250,
+                          width: 180,
+                          margin:
+                              const EdgeInsets.symmetric(horizontal: PADDING),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(height: PADDING),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(PADDING / 2),
+                                    child: Icon(
+                                      FontAwesomeIcons.quoteLeft,
+                                      color: Theme.of(context).accentColor,
+                                      size: 18,
+                                    ),
                                   ),
-                                ),
-                                Spacer(),
-                                Text(
-                                  '${review.rating}',
-                                  style: highlightedTextStyle,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(PADDING / 3),
-                                  child: Icon(
-                                    FontAwesomeIcons.solidStar,
-                                    size: 15,
+                                  Spacer(),
+                                  Text(
+                                    '${review.rating}',
+                                    style: highlightedTextStyle,
                                   ),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(height: PADDING),
-                            Flexible(
-                              child: AutoSizeText(
-                                review.appReviewDescription,
-                                style: textStyle,
+                                  Padding(
+                                    padding: const EdgeInsets.all(PADDING / 3),
+                                    child: Icon(
+                                      FontAwesomeIcons.solidStar,
+                                      size: 15,
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            const SizedBox(height: PADDING / 1.5),
-                            Text(
-                              review.userFullname,
-                              style: highlightedTextStyle,
-                            ),
-                            const SizedBox(height: PADDING),
-                          ],
+                              const SizedBox(height: PADDING),
+                              Flexible(
+                                child: AutoSizeText(
+                                  review.appReviewDescription,
+                                  style: textStyle,
+                                ),
+                              ),
+                              const SizedBox(height: PADDING / 1.5),
+                              Text(
+                                review.userFullname,
+                                style: highlightedTextStyle,
+                              ),
+                              const SizedBox(height: PADDING),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            SizedBox(height: PADDING * 2),
-          ],
+              SizedBox(height: PADDING * 2),
+            ],
+          ),
         ),
       ),
     );

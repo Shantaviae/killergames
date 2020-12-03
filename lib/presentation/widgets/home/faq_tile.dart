@@ -7,7 +7,6 @@ import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:killergames/core/core.dart';
 import 'package:killergames/domain/entities/entities.dart';
-import 'package:url_launcher/url_launcher.dart' as url;
 
 class FaqTile extends StatefulWidget {
   const FaqTile(this.faq, {Key? key}) : super(key: key);
@@ -103,27 +102,6 @@ class _FaqTileState extends State<FaqTile> with SingleTickerProviderStateMixin {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(widget.faq.answer, style: textStyle),
-                          const SizedBox(height: PADDING),
-                          Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.start,
-                            spacing: PADDING / 1.5,
-                            runSpacing: PADDING / 2,
-                            children: [
-                              for (final link in widget.faq.links)
-                                TextButton.icon(
-                                  icon: Icon(
-                                    link.iconData ?? FeatherIcons.link,
-                                    size: 16,
-                                  ),
-                                  label: Text(link.name, style: textStyle),
-                                  onPressed: () async {
-                                    if (await url.canLaunch(link.url)) {
-                                      url.launch(link.url);
-                                    }
-                                  },
-                                )
-                            ],
-                          ),
                         ],
                       ),
                     )

@@ -3,6 +3,7 @@ class AppLocals {
   static String get privacyPolicy => 'Privacy Policy';
   static String get termsOfServicePolicy => 'Terms Of Service';
   static String get genericPolicy => 'Privacy Policy';
+  static String get copyright => '© 2020 — All Rights Reserved';
 
   //Error View
   static String get error404 =>

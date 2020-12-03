@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
-import 'package:killergames/core/core.dart';
 import 'package:killergames/domain/entities/entities.dart';
 import 'package:killergames/presentation/widgets/home/widgets.dart';
 import 'package:killergames/presentation/widgets/shared/widgets.dart';
@@ -9,14 +8,16 @@ import 'package:killergames/presentation/widgets/shared/widgets.dart';
 const TOOLBAR_HEIGHT = kToolbarHeight * 1.25;
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({
-    required this.selectedAppId,
-    required this.appData,
+  const CustomAppBar(
+    this.appId,
+    this.setAppId,
+    this.apps, {
     Key? key,
   }) : super(key: key);
 
-  final AppId selectedAppId;
-  final Map<AppId, KillerGamesApp> appData;
+  final String? appId;
+  final Function(String) setAppId;
+  final Map<String, KillerGamesApp> apps;
 
   @override
   Widget build(BuildContext context) {
@@ -26,26 +27,25 @@ class CustomAppBar extends StatelessWidget {
       toolbarHeight: TOOLBAR_HEIGHT,
       leading: SizedBox.shrink(),
       leadingWidth: 0,
-      title: Text(
-        'Killer Games'.toUpperCase(),
-        style: ThemeManager.appTitle(context),
-      ),
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      centerTitle: false,
+      backgroundColor: Colors.green,
+      // backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      title: AppName(onPrimary: false),
+      centerTitle: true,
       actions: [
         if (isDesktop)
-          for (final entry in appData.entries)
+          for (final entry in apps.entries)
             SelectAppButton(
               appId: entry.key,
+              setAppId: setAppId,
               app: entry.value,
-              isSelected: entry.key == selectedAppId,
+              isSelected: entry.key == appId,
             ),
         if (!isDesktop)
           IconButton(
             icon: Icon(FeatherIcons.menu),
             onPressed: () => Scaffold.of(context).openDrawer(),
           ),
-        const SizedBox(width: PADDING),
+        SizedBox(width: Responsive.contentPadding(context).right),
       ],
     );
   }

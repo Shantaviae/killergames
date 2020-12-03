@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:killergames/data/datasources.dart';
 
 class LocatorService {
   static final ls = GetIt.instance;
@@ -17,9 +18,9 @@ class LocatorService {
     // ls.registerLazySingleton(() => RewardedVideoAd.instance);
     // ls.registerLazySingleton(() => InAppReview.instance);
 
-    // //Backend Datasources & API Interfaces
-    // ls.registerLazySingleton(() => ConnectivityManager());
-    // ls.registerLazySingleton(() => UserDatasourse());
+    //Backend Datasources & API Interfaces
+    ls.registerLazySingleton(() => PolicyDatasource());
+    ls.registerLazySingleton(() => AppDatasource());
     // ls.registerLazySingleton(() => GamesDatasourse());
     // ls.registerLazySingleton(() => GamesServices());
     // ls.registerLazySingleton(() => AuthManager());

@@ -44,20 +44,16 @@ class Responsive {
   static double screenHeight(BuildContext context) =>
       MediaQuery.of(context).size.height;
 
-  static EdgeInsets contentPadding(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-    final screenType = _getScreenType(context);
-    final width =
-        screenSize.width > 1200 ? 1200 : screenSize.width - PADDING * 4;
-    if (screenType == ScreenType.Desktop) {
-      final screenSize = MediaQuery.of(context).size;
-      final whiteSpace = screenSize.width - width;
-      return EdgeInsets.symmetric(horizontal: whiteSpace / 2);
-    } else if (screenType == ScreenType.Tablet) {
-      return EdgeInsets.symmetric(horizontal: PADDING);
-    } else {
-      return EdgeInsets.symmetric(horizontal: PADDING / 2);
-    }
+  static EdgeInsets contentPadding(
+    BuildContext context, [
+    double? contentWidth,
+  ]) {
+    final size = MediaQuery.of(context).size;
+    final width = contentWidth ?? screenWidth(context);
+    return EdgeInsets.symmetric(
+      horizontal: (size.width - width) / 2,
+      vertical: PADDING * 2,
+    );
   }
 }
 
